@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartAuger Technologies — FATHOM Platform Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --navy: #0A1628;
+    --navy-light: #122240;
+    --cyan: #00B4D8;
+    --cyan-dim: #0090AD;
+    --white: #FFFFFF;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-500: #64748B;
+    --gray-700: #334155;
+    --gray-800: #1E293B;
+    --gray-900: #0F172A;
+    --green: #10B981;
+    --amber: #F59E0B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--gray-800);
+    background: var(--white);
+    line-height: 1.5;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.4in 0.55in;
+  }
+
+  @media print {
+    body { font-size: 9pt; }
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    .format-section { page-break-inside: avoid; }
+    .option-row { page-break-inside: avoid; }
+    .deliverables { page-break-inside: avoid; }
+    .exit-criteria { page-break-inside: avoid; }
+    .why-grid { page-break-inside: avoid; }
+    .callout-quote { page-break-inside: avoid; }
+    .phase-badge { page-break-after: avoid; }
+    h3 { page-break-after: avoid; }
+    h4 { page-break-after: avoid; }
+  }
+
+  .page {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0 0.6in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-break {
+    page-break-before: always;
+    padding-top: 0.08in;
+  }
+
+  /* ---- Header ---- */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.15in 0 0.1in 0;
+    margin-bottom: 0.08in;
+  }
+
+  .page-header .logo-mark { height: 26px; opacity: 0.85; }
+
+  .page-header .meta {
+    text-align: right;
+    font-size: 7.5pt;
+    color: var(--gray-500);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .page-header .meta strong { color: var(--gray-700); font-weight: 600; }
+
+  /* ---- Footer ---- */
+  .page-footer {
+    margin-top: auto;
+    padding: 0.04in 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7pt;
+    color: var(--gray-500);
+    letter-spacing: 0.03em;
+  }
+
+  .page-footer .conf {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 8.5in;
+    text-align: center;
+    padding: 0.5in 0.4in;
+  }
+
+  .cover .fathom-logo { width: 280px; margin-bottom: 0.3in; }
+
+  .cover .company-label {
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.2in;
+  }
+
+  .cover h1 {
+    font-size: 26pt;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 0.08in;
+    letter-spacing: -0.01em;
+  }
+
+  .cover .prepared-for {
+    font-size: 9pt;
+    color: var(--gray-500);
+    margin-bottom: 0.04in;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .cover .client-name {
+    font-size: 15pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.04in;
+  }
+
+  .cover .date { font-size: 10pt; color: var(--gray-500); }
+
+  .cover .hero-bar {
+    margin-top: 0.3in;
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 0.16in 0.3in;
+    width: 100%;
+    max-width: 5.4in;
+  }
+
+  .cover .hero-bar p {
+    color: var(--white);
+    font-size: 10pt;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  .cover .hero-bar span { color: var(--cyan); font-weight: 700; }
+
+  .cover .stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.15in;
+    margin-top: 0.25in;
+    width: 100%;
+    max-width: 5.4in;
+  }
+
+  .cover .stat-card {
+    flex: 1;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 0.1in 0.08in;
+    text-align: center;
+  }
+
+  .cover .stat-card .num {
+    font-size: 14pt;
+    font-weight: 800;
+    color: var(--cyan);
+    line-height: 1.2;
+  }
+
+  .cover .stat-card .label {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: var(--gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  .cover .built-badge {
+    margin-top: 0.2in;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #065F46;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cover .built-badge .dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .cover .confidential-notice {
+    margin-top: 0.2in;
+    font-size: 7pt;
+    color: var(--gray-500);
+    max-width: 5.2in;
+    line-height: 1.5;
+  }
+
+  /* ---- Typography ---- */
+  h2 {
+    font-size: 16pt;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 0.08in;
+    letter-spacing: -0.01em;
+  }
+
+  h2 .thin { font-weight: 400; color: var(--gray-500); }
+
+  .section-rule {
+    width: 45px; height: 3px;
+    background: var(--cyan);
+    border: none;
+    margin-bottom: 0.12in;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--cyan-dim);
+    margin-top: 0.14in;
+    margin-bottom: 0.04in;
+  }
+
+  h4 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 0.1in;
+    margin-bottom: 0.02in;
+  }
+
+  p {
+    margin-bottom: 0.06in;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 9pt;
+  }
+
+  /* ---- Phase Badge ---- */
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.12in;
+  }
+
+  .phase-badge .tag {
+    background: var(--cyan);
+    color: var(--white);
+    font-size: 8.5pt;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 3px;
+  }
+
+  .phase-badge .title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ---- Tables ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.08in 0 0.1in 0;
+    font-size: 8.5pt;
+  }
+
+  table th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 8px;
+    font-size: 7.5pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+    line-height: 1.35;
+  }
+
+  table tr:nth-child(even) td { background: var(--gray-50); }
+
+  table td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .target-cell { color: var(--cyan-dim); font-weight: 700; }
+
+  /* ---- Deliverables ---- */
+  .deliverables { margin: 0.06in 0 0.08in 0; }
+
+  .deliverables .item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .deliverables .item:last-child { border-bottom: none; }
+
+  .deliverables .item .name {
+    font-weight: 700;
+    color: var(--navy);
+    min-width: 180px;
+    font-size: 8.5pt;
+  }
+
+  .deliverables .item .desc { color: var(--gray-700); font-size: 8.5pt; }
+
+  /* ---- Lists ---- */
+  ul {
+    margin: 0.03in 0 0.06in 0.2in;
+    padding: 0;
+    font-size: 9pt;
+  }
+
+  ul li { margin-bottom: 0.02in; padding-left: 2px; }
+  ul li::marker { color: var(--cyan); }
+
+  /* ---- Options ---- */
+  .option-row { display: flex; gap: 0.12in; margin: 0.06in 0 0.1in 0; }
+
+  .option-card {
+    flex: 1;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 0.1in 0.12in;
+    background: var(--gray-50);
+  }
+
+  .option-card .card-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--cyan-dim);
+    margin-bottom: 0.03in;
+  }
+
+  .option-card p { font-size: 8pt; color: var(--gray-700); margin-bottom: 0; line-height: 1.4; }
+
+  /* ---- Exit Criteria ---- */
+  .exit-criteria {
+    background: var(--gray-50);
+    border-left: 3px solid var(--cyan);
+    padding: 0.06in 0.12in;
+    margin: 0.06in 0;
+    font-size: 8.5pt;
+    font-style: italic;
+    color: var(--gray-700);
+  }
+
+  /* ---- Quote ---- */
+  .callout-quote {
+    background: var(--navy);
+    border-radius: 5px;
+    padding: 0.18in 0.3in;
+    margin: 0.2in 0;
+    text-align: center;
+  }
+
+  .callout-quote p {
+    color: var(--white);
+    font-size: 10.5pt;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .callout-quote span { color: var(--cyan); font-weight: 700; }
+
+  /* ---- Why Cards ---- */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1in;
+    margin: 0.08in 0;
+  }
+
+  .why-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 0.08in 0.12in;
+  }
+
+  .why-card h4 { color: var(--cyan-dim); margin-top: 0; font-size: 9pt; margin-bottom: 0.02in; }
+  .why-card p { font-size: 8pt; color: var(--gray-700); margin-bottom: 0; line-height: 1.4; }
+
+  /* ---- Format Support Grid ---- */
+  .format-section { margin-bottom: 0.1in; }
+
+  .format-section .format-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.04in;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .format-section .format-title .count {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--cyan);
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+
+  .ext-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 0.03in;
+  }
+
+  .ext-tag {
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 7.5pt;
+    font-weight: 600;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 3px;
+    padding: 2px 7px;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .ext-tag.companion {
+    color: var(--gray-500);
+    border-style: dashed;
+    font-weight: 500;
+  }
+
+  .status-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #065F46;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    border-radius: 10px;
+    padding: 1px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .status-live .dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+  .status-roadmap {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #92400E;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 10px;
+    padding: 1px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .format-desc {
+    font-size: 7.5pt;
+    color: var(--gray-500);
+    margin-top: 0.01in;
+    line-height: 1.3;
+  }
+
+  /* ---- Highlight Card ---- */
+  .highlight-card {
+    border: 2px solid #DC2626;
+    border-radius: 6px;
+    padding: 0.14in 0.18in;
+    margin: 0.15in 0;
+    background: #FEF2F2;
+    page-break-inside: avoid;
+  }
+
+  .highlight-card h4 {
+    color: #DC2626;
+    font-size: 10pt;
+    font-weight: 800;
+    margin: 0 0 0.04in 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .highlight-card p {
+    color: var(--gray-800);
+    font-size: 9pt;
+    margin-bottom: 0.04in;
+    line-height: 1.45;
+  }
+
+  .highlight-card p:last-child { margin-bottom: 0; }
+
+  .highlight-card strong { color: #991B1B; }
+
+  /* ---- Contact ---- */
+  .contact-block {
+    margin-top: 0.2in;
+    padding-top: 0.12in;
+    border-top: 1px solid var(--gray-200);
+    font-size: 9pt;
+    color: var(--gray-700);
+  }
+
+  .contact-block strong { color: var(--navy); }
+  .contact-block .role { color: var(--gray-500); font-size: 8pt; }
+
+  /* ---- Utilities ---- */
+  .nowrap { white-space: nowrap; }
+  .mt-sm { margin-top: 0.1in; }
+</style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- COVER PAGE                                                        -->
+<!-- ================================================================ -->
+<div class="page">
+  <div class="cover">
+
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="fathom-logo">
+
+    <div class="company-label">SmartAuger Technologies LLC</div>
+
+    <h1>Technical Overview</h1>
+
+    <div class="date">April 2026</div>
+
+    <p style="font-size: 9pt; color: var(--gray-700); max-width: 5in; line-height: 1.6; margin-top: 0.3in;">
+      FATHOM is a project data management platform that ingests, processes, and reasons across every sensor type, file format, and project record an infrastructure firm generates &mdash; transforming fragmented data into a unified, queryable intelligence asset that compounds in value with every project.
+    </p>
+
+    <div class="confidential-notice">
+      The strategies, product architectures, and implementation frameworks described herein represent proprietary intellectual property of SmartAuger Technologies LLC.
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- THE PROBLEM                                                        -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong><br>April 2026</div>
+  </div>
+
+  <h2>The Problem</h2>
+  <hr class="section-rule">
+
+  <p>Sensors are getting faster, cheaper, and more numerous. Drone fleets deploy at scale. GPR units collect gigabytes per corridor. GNSS receivers log thousands of positions per second. The question is no longer <em>can we collect this data</em> &mdash; it is <strong>how do we interpret it fast enough, how do we store it, and how do we use AI to extract understanding from volumes that are unsustainable by human review alone?</strong></p>
+
+  <p>The collection problem is solved. The intelligence problem is not. Today, project data lands on thumb drives, scattered cloud folders, and individual workstations. There is no unified pipeline from field to deliverable. Assembling a DOT submission means hours of manual work &mdash; hunting files, reformatting outputs, cross-referencing disconnected systems. Legacy data is dark: past surveys cannot inform current bids because no one can find or query them.</p>
+
+  <h2 style="margin-top: 0.15in;">The Solution</h2>
+  <hr class="section-rule">
+
+  <p>FATHOM solves all three. <strong>Store:</strong> every sensor type, file format, and project record in a unified, cloud-native datalake that scales without limit. <strong>Interpret:</strong> DSP, ML, and AI council models process ingested data automatically &mdash; faster than any team of analysts. <strong>Compound:</strong> the more data in the archive, the deeper the reasoning across bidding, risk, compliance, and project intelligence.</p>
+
+  <p>Two core components. <strong>Core Walker</strong> builds the datalake &mdash; a software-defined forward-deployed engineer that lets any non-technical person normalize and deploy project data in minutes. <strong>FATHOM Core</strong> sits on top &mdash; visualization, processing, AI interpretation, NLP querying, and automated reporting. Together, they turn fragmented data into a compounding intelligence asset accessible from any browser, any device, anywhere.</p>
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+    <div>Page 2</div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- THE FATHOM PLATFORM                                                -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong> &mdash; Confidential<br>April 14, 2026</div>
+  </div>
+
+  <h2>The FATHOM Platform</h2>
+  <hr class="section-rule">
+
+  <h3>Core Walker &mdash; Data Normalization &amp; Management</h3>
+  <p>Core Walker is a software-defined forward-deployed engineer &mdash; a lightweight application available on desktop, web, mobile, and tablet that gives any non-technical person the power to aggregate project data and deploy it into the datalake. No data science background. No IT support. No understanding of file formats required.</p>
+
+  <p><strong>1. Point.</strong> Select a drive &mdash; or multiple drives &mdash; on an edge device, sensor hard drive, laptop, or network share.</p>
+
+  <p><strong>2. Scan.</strong> The proprietary forensic ingest engine launches a family of parsers that find, pair, and study correlation between filesets. Every file is read at the byte level &mdash; companion files matched, formats identified by binary signature, parser selected automatically. Output: a fully normalized project package.</p>
+
+  <p><strong>3. Deploy.</strong> The package is compressed and transmitted to the tenant's cloud. Uploads are gated &mdash; data managers review and approve before data commits. Once approved, it is placed into both a relational database (structured query) and an analytical database (real-time ML). This dual-database architecture is how FATHOM can tell you the depth of a utility, the extent of a void, or the thickness of a pavement layer scanned four years ago across the country &mdash; while also reporting weather conditions, operator speed, and GNSS quality at the moment of collection.</p>
+
+  <p>Beyond ingestion, Core Walker manages the archive: browse, search, view, and organize from desktop, browser, tablet, or phone. Access is hierarchical &mdash; read-only on a single project up to full repository management. Every change tracked with automatic snapshots, backups, and full version history.</p>
+
+  <h3>FATHOM Core &mdash; Processing, Intelligence &amp; Visualization</h3>
+  <p>FATHOM Core is both a <strong>processing engine</strong> and an <strong>intelligence layer</strong>. Advanced algorithms run directly against the datalake: radar DSP (live), PPK and factor graph GNSS filtering for sub-centimeter accuracy (live), LiDAR point cloud manipulation (in development), satellite change detection (planned), and computer vision (in development). No exporting. No third-party toolchains. No context switching.</p>
+  <p>On top of that processing backbone, FATHOM Core delivers a unified project viewer, database manager, multi-sensor correlation, AI-driven analysis, natural language querying, and automated report generation. Key capabilities:</p>
+
+  <ul>
+    <li><strong>Cloud compute on any device</strong> &mdash; Advanced processing that would normally require a high-end workstation (DSP, PPK, ML inference) runs on cloud infrastructure and is accessible from any laptop, tablet, or phone. The device is just a window &mdash; the compute happens in the cloud.</li>
+    <li><strong>Desktop, mobile, tablet, browser</strong> &mdash; Full platform access from any form factor. Online or offline. A field lead on a tablet at the job site has the same view as a project manager at their desk.</li>
+    <li><strong>One platform, every sensor</strong> &mdash; Every sensor manufacturer ships its own proprietary processing software. FATHOM eliminates the need for a portfolio of micro-applications by unifying viewing, processing, and interpretation for all sensor types in a single interface.</li>
+    <li><strong>Complete data view from anywhere</strong> &mdash; The entire repository &mdash; raw data, processed outputs, AI results, reports &mdash; is accessible at any time, from any location, with authorized access. No VPN. No file transfers. No waiting for someone to send you the data.</li>
+    <li><strong>Export as a right, not a feature</strong> &mdash; If an organization owns the data, they are entitled to access it in the format they need &mdash; without purchasing specialized, single-purpose software packages. FATHOM exports to ESRI ArcGIS, QGIS, SHP, DXF, KMZ, GeoTIFF, PDF, CSV, and more.</li>
+  </ul>
+
+  <h3>The AI Council</h3>
+  <p>Separate from the processing engine, the AI council is a pipeline of specialized ML models that run automatically. GPR object detection identifies utilities, voids, layer boundaries, and pavement degradation (live). GNSS quality models flag degraded positions and coverage gaps (live). Video/CCTV models tag pipe defects, surface distress, and environmental conditions (in development). Record aggregation cross-references utility databases, geotechnical reports, and permits against sensor findings (in development). Each model contributes independently. FATHOM fuses the results &mdash; <strong>before a human ever opens a file</strong>. New models plug into the same architecture and immediately benefit from the full datalake.</p>
+
+  <h3>Security &amp; Data Governance</h3>
+  <p>All data is encrypted at rest and in transit. Each organization operates in a logically isolated tenant &mdash; client data is never accessible to other tenants. All user access is authenticated and logged with a full audit trail. Role-based entitlements control who can upload, view, modify, or export data at the project level. The platform's security architecture is designed with enterprise and government compliance requirements in mind, with SOC 2 and FedRAMP pathway on the compliance roadmap.</p>
+
+  <div class="highlight-card">
+    <h4>Zero Infrastructure Burden &mdash; Cloud in 24 Hours</h4>
+    <p>Organizations do not need to build, provision, or manage any cloud infrastructure. FATHOM's cloud service is <strong>plug and play</strong> &mdash; a fully managed, dedicated tenant environment that goes from zero to live in under 24 hours. No DevOps team. No procurement cycle. No months of IT planning.</p>
+    <p>Alternatively, if the organization prefers to own their infrastructure, our dependencies and database structures can be installed on any major cloud provider (AWS, Azure, GCP) with the same 24-hour setup window. Either path takes an organization from antiquated thumb-drive storage to a <strong>next-generation, queryable cloud datalake</strong> &mdash; overnight. This alone eliminates the need to invest in developing their own data infrastructure from scratch.</p>
+  </div>
+
+  <h3>Export &amp; Interoperability</h3>
+  <p>Everything that goes in can come out. One-click export to ESRI ArcGIS, QGIS, SHP, GeoJSON, KML/KMZ, DXF, GeoTIFF, PDF, and CSV. Data moves directly into the tools clients and partners already use &mdash; no reformatting, no middleware. Core format exports are live today. ArcGIS direct integration is on the active roadmap.</p>
+
+  <h3>Natural Language Intelligence</h3>
+  <p>FATHOM's NLP is an always-available analyst. It does not return search results &mdash; it reasons, correlates, and acts.</p>
+  <ul>
+    <li><em>"Pull everything within 500 feet of the bore path on Project 2024-0317, flag utility conflicts, cross-reference One-Call records, and package it for the client."</em> &mdash; FATHOM delivers a complete conflict summary with maps, tables, and narrative, export-ready.</li>
+    <li><em>"Show me all road sections on Route 33 where layer thickness is below spec, overlaid with three years of traffic data."</em> &mdash; condition report with recommended action zones, generated automatically.</li>
+    <li>A field lead highlights an area on the map: <em>"What hazards and subsurface conditions do I need to know before we dig here?"</em> &mdash; same depth of analysis, delivered instantly.</li>
+  </ul>
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+    <div>Page 3</div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ONCE YOU HAVE THE DATALAKE                                         -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong> &mdash; Confidential<br>April 14, 2026</div>
+  </div>
+
+  <h2>Once You Have the Datalake, Everything Changes</h2>
+  <hr class="section-rule">
+
+  <p>Once every project &mdash; past and present &mdash; lives in a single, normalized, queryable archive, organizations unlock capabilities that are impossible with fragmented data. Some are live today. Others are in active development and will mature during and beyond onboarding. All of them depend on the same foundation: <strong>the datalake</strong>.</p>
+
+  <h3>Available Now</h3>
+  <ul>
+    <li><strong>Access everything, from anywhere</strong> &mdash; Every scan, survey, and record viewable on an interactive map and in a database manager from any browser, any device, any location with authorized access.</li>
+    <li><strong>Centimeter-level spatial correlation</strong> &mdash; Every centimeter of sensor data is tied to its GNSS position. Click the map, land on the exact GPR trace, video frame, or survey record &mdash; and vice versa. This is the lifeblood of the platform: it makes fusion, conflict detection, and NLP querying possible. Accuracy is bounded only by the sensor hardware.</li>
+    <li><strong>Radar DSP and GNSS corrections</strong> &mdash; Digital signal processing on GPR data and PPK/factor graph filtering on GNSS positions run inside the platform. Enhanced data, no external tools.</li>
+    <li><strong>AI interpretation across use cases</strong> &mdash; Object detection models identify utilities, voids, rebar, layer boundaries, pavement degradation, and subsurface anomalies in B-scans automatically, with confidence-scored results.</li>
+    <li><strong>Multi-sensor fusion</strong> &mdash; At any coordinate, surface every data point that exists: the GPR interpretation, the GNSS track, the EM locate, the video frame, the geotechnical record, the utility record, and the permit &mdash; all in one view.</li>
+    <li><strong>Automated report generation</strong> &mdash; DOT submissions, conflict maps, pavement condition reports, anomaly summaries, and permit overlays assembled and exported in industry-standard formats.</li>
+  </ul>
+
+  <h3>In Active Development</h3>
+  <ul>
+    <li><strong>Natural language intelligence</strong> &mdash; Query the entire archive conversationally. Ask FATHOM to find utility conflicts, assess pavement condition trends, compare void density across corridors, or package deliverables &mdash; from a single prompt.</li>
+    <li><strong>Automated conflict and condition detection</strong> &mdash; Cross-referencing of sensor data against utility records, geotechnical reports, and historical surveys. AI-generated summaries for utility conflicts, void risk, layer degradation, and structural anomalies.</li>
+    <li><strong>CCTV and video AI models</strong> &mdash; Pipe defect classification, road surface distress detection, environmental condition tagging, and GPS-correlated video annotation.</li>
+    <li><strong>LiDAR processing</strong> &mdash; Point cloud filtering, surface extraction, and volumetric analysis inside the platform.</li>
+    <li><strong>Survey quality forensics</strong> &mdash; Evaluate GNSS accuracy down to individual NMEA sentences. Flag unsurveyed zones, identify operator error patterns, and grade collection quality before it reaches a client.</li>
+  </ul>
+
+  <h3>On the Roadmap</h3>
+  <ul>
+    <li><strong>Bidding analytics</strong> &mdash; Cost, risk, and timeline projections grounded in the full weight of historical project data. Know what a corridor actually costs before you price it.</li>
+    <li><strong>Predictive project analysis</strong> &mdash; Permitting delays, subsurface surprises, and cost overruns surfaced by comparing new corridors against every similar project in the archive.</li>
+    <li><strong>Satellite change detection</strong> &mdash; Compare imagery over time to identify site disturbance, environmental shift, or pre/post-construction conditions.</li>
+    <li><strong>Regulatory and building code insights</strong> &mdash; Pre- and post-project compliance analysis with NLP-driven code surfacing on demand.</li>
+  </ul>
+
+<!-- ================================================================ -->
+<!-- CORE WALKER FORMAT SUPPORT (continues from datalake page)          -->
+<!-- ================================================================ -->
+
+  <h2 style="margin-top: 0.2in;">Core Walker <span class="thin">Format Support</span></h2>
+  <hr class="section-rule">
+
+  <p>Core Walker is built and operational. The formats below are ingested, normalized, and spatially indexed today. If a client uses a format not listed here, we build the adapter during onboarding at no additional cost.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Category</th>
+        <th style="width: 42%;">Supported Extensions</th>
+        <th>Vendors / Notes</th>
+        <th style="width: 8%; text-align: center;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GPR</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt; white-space: normal;">.dzt .dzg .dt1 .hd .gpz .rd3 .rd7 .rad .dt .3dr .gec .iprb .iprh .seg2 .gpr .s2p</td>
+        <td style="white-space: normal;">GSSI, MALA, Sensors &amp; Software, IDS GeoRadar, Impulse Radar, US Radar, Proceq &mdash; auto companion detection</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>Seismic</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.sgy .segy .su</td>
+        <td style="white-space: normal;">SEG-Y and Seismic Unix (cross-hole, MASW, refraction)</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>GNSS / GPS</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.gpx .nmea .obs .rnx .csv</td>
+        <td style="white-space: normal;">GPS Exchange, NMEA, RINEX &mdash; CSV auto-classified by headers</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>LiDAR / Point Cloud</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.las .laz .e57 .ply .pcd</td>
+        <td style="white-space: normal;">ASPRS LAS/LAZ, ASTM E57, PLY, PCD with auto CRS detection</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>GIS / Geospatial</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.shp .geojson .kml .kmz .gpkg .gml</td>
+        <td style="white-space: normal;">Shapefile (+.dbf .shx .prj), GeoJSON, KML/KMZ, GeoPackage, CityGML</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>Imagery / Raster</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.tif .tiff .ecw .jp2 .png .jpg</td>
+        <td style="white-space: normal;">GeoTIFF, ECW, JPEG 2000, standard imagery with georeference</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>CAD / BIM</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.dxf .ifc</td>
+        <td style="white-space: normal;">AutoCAD DXF, IFC Building Information Model</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+      <tr>
+        <td>Documents / ML</td>
+        <td style="font-family: 'Consolas', monospace; font-size: 7.5pt;">.pdf .yaml .log .zip .pt .onnx</td>
+        <td style="white-space: normal;">Auto-classified PDFs, ML weights (PyTorch/ONNX), ZIP auto-expansion</td>
+        <td style="text-align: center;" class="target-cell">Live</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 0.12in;">Roadmap Formats</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Formats</th>
+        <th style="width: 8%; text-align: center;">Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CCTV Pipe Inspection</td>
+        <td style="white-space: normal;">PACP/NASSCO XML, WinCan DB, POSM, GraniteNet exports, MP4/AVI with chainage metadata</td>
+        <td style="text-align: center;" class="target-cell">Phase 2</td>
+      </tr>
+      <tr>
+        <td>GPS-Tagged Video</td>
+        <td style="white-space: normal;">MP4, MTS, MOV with embedded GPS tracks, GoPro telemetry (GPMF), dashcam GPS overlays</td>
+        <td style="text-align: center;" class="target-cell">Phase 2</td>
+      </tr>
+      <tr>
+        <td>EM Locator Data</td>
+        <td style="white-space: normal;">Radiodetection CAT/Genny, Vivax-Metrotech vLoc, RD8200 CSV/SHP</td>
+        <td style="text-align: center;" class="target-cell">Phase 2</td>
+      </tr>
+      <tr>
+        <td>Drone / UAV</td>
+        <td style="white-space: normal;">DJI flight logs, orthomosaic GeoTIFF, photogrammetry point clouds</td>
+        <td style="text-align: center;" class="target-cell">Phase 2</td>
+      </tr>
+      <tr>
+        <td>Utility Records</td>
+        <td style="white-space: normal;">One-call ticket XML/PDF, public utility as-built scans, permit documents</td>
+        <td style="text-align: center;" class="target-cell">Phase 2</td>
+      </tr>
+      <tr>
+        <td>Project Records</td>
+        <td style="white-space: normal;">Contracts, submittals, inspection reports, daily logs, RFIs, change orders, safety records</td>
+        <td style="text-align: center;" class="target-cell">Roadmap</td>
+      </tr>
+      <tr>
+        <td style="color: var(--gray-500); font-style: italic;" colspan="3">Core Walker's adapter architecture accommodates new formats with a single adapter &mdash; no core refactoring required.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+
+<!-- ================================================================ -->
+<!-- HOW IT WORKS                                                       -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong><br>April 2026</div>
+  </div>
+
+  <h2>How It Works <span class="thin">on a Real Project</span></h2>
+  <hr class="section-rule">
+
+  <h3>1. Collect &amp; Upload</h3>
+  <p>A sensor crew finishes a survey &mdash; GPR, GNSS, video, EM, or any combination. They open Core Walker on a laptop or phone and upload the raw data directly to the datalake from the field. No organizing folders, no renaming files, no understanding the backend. Core Walker classifies, normalizes, and indexes everything automatically.</p>
+
+  <h3>2. Process &amp; Correlate</h3>
+  <p>FATHOM Core runs DSP on radar data, applies PPK corrections to GNSS positions, and correlates every centimeter of sensor data to its spatial location. The AI council runs object detection (utilities, voids, rebar, layer boundaries), quality models, and record cross-referencing automatically. By the time the crew is back at the office, the data has been processed, interpreted, and fused.</p>
+
+  <h3>3. View &amp; Query</h3>
+  <p>A project manager opens FATHOM in a browser &mdash; from a desk, a conference room, or a job site trailer. Every data asset for that project is rendered on an interactive map, searchable and queryable. They can ask in plain language: <em>"What utility conflicts, voids, or subsurface conditions exist within 500 feet of our planned excavation?"</em> &mdash; and FATHOM delivers an answer backed by sensor data, historical records, and AI-scored confidence.</p>
+
+  <h3>4. Report &amp; Export</h3>
+  <p>Client deliverables are generated in minutes. Conflict maps, void assessments, pavement condition reports, anomaly summaries, DOT submissions, and permit overlays are assembled automatically and exported to ESRI ArcGIS, QGIS, SHP, DXF, KMZ, GeoTIFF, or PDF. What used to take days of manual assembly becomes a button click.</p>
+
+  <h3>5. Compound</h3>
+  <p>Every project teaches the next one. A water main GPR survey reveals high clay content, shallow water table, aggressive corrosion environment. Two years later, a different team bids a gas line three blocks away. FATHOM surfaces the soil data, flags corrosion risk, and recommends protective sleeving &mdash; before anyone breaks ground. That insight was not in any report. It was in the data, waiting for a system smart enough to connect it.</p>
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NOTHING IS TRIAGED                                                 -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong><br>April 2026</div>
+  </div>
+
+  <h2>Nothing Is Triaged</h2>
+  <hr class="section-rule">
+
+  <p>A human reviews a dataset looking for one thing &mdash; the utility, the void, the layer thickness they were sent to find. FATHOM looks at everything. The system does not filter by task. It reports what it finds:</p>
+
+  <ul>
+    <li>A crew scans for a water main &mdash; the AI flags an <strong>unmarked gas line</strong> at 4.2 feet, a <strong>void forming under the curb</strong>, and a <strong>GNSS drift</strong> invalidating the last 200 meters of positioning. One pass. Zero prompts.</li>
+    <li>Road survey: <strong>1,200 feet of layer degradation</strong>, 30% base course loss. FATHOM runs depth estimation on every trace, calculates area from satellite imagery, estimates material volumes (base, binder, surface), projects man-hours from historical rates, and generates a cost estimate &mdash; before the PM opens the scan.</li>
+    <li>Three years of CCTV video across a sewer district. FATHOM <strong>maps defect density by segment</strong>, finds joint separations converging on one block. Cross-referenced with GPR from two years prior: <strong>voids forming beneath the roadway</strong> directly above failing joints. Sinkhole risk caught because two datasets from two contractors lived in one datalake.</li>
+    <li>GNSS survey looks clean &mdash; FATHOM flags a <strong>10-minute multipath spike</strong> near a bridge overpass that would have degraded the deliverable. Passed the field check, caught by the platform.</li>
+    <li>Highway LiDAR compared against an 18-month-old survey: <strong>2.4 inches of settlement across 400 feet of approach slab</strong>. Overlaid with GPR showing void-susceptible fill beneath. Failure flagged months before visible to a driver.</li>
+    <li>Data center GPR targets utility clearance &mdash; AI identifies a <strong>soil moisture boundary</strong> indicating a seasonal water table affecting foundation design. Never in scope. Now in the record.</li>
+  </ul>
+
+  <p><strong>The datalake gets smarter with every project executed.</strong></p>
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- COMMERCIAL MODEL & WHY                                             -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong><br>April 2026</div>
+  </div>
+
+  <h2>Commercial Model</h2>
+  <hr class="section-rule">
+
+  <p>FATHOM is delivered as a SaaS platform with flexible deployment and pricing that scales with adoption:</p>
+
+  <ul>
+    <li><strong>Seat-based licensing</strong> &mdash; access expands from a pilot team to the full organization as adoption grows</li>
+    <li><strong>Project and storage tiers</strong> &mdash; pricing scales with data volume and active projects in the datalake</li>
+    <li><strong>Multi-tenant architecture</strong> &mdash; subsidiaries and divisions operate as isolated tenants with shared or independent datalakes</li>
+    <li><strong>Managed cloud or self-hosted</strong> &mdash; FATHOM Cloud (fully managed, live in 24 hours) or deployed on the client's own AWS/Azure/GCP</li>
+    <li><strong>Cloud management included</strong> &mdash; infrastructure, backups, uptime SLAs, and platform maintenance</li>
+  </ul>
+
+  <p>New clients begin with a paid pilot to validate the platform in their ecosystem &mdash; configuring tenant pipelines, onboarding operators, and stress-testing against real project data before transitioning to a commercial license.</p>
+
+  <h2 style="margin-top: 0.12in;">Why FATHOM</h2>
+  <hr class="section-rule">
+
+  <div class="why-grid">
+    <div class="why-card">
+      <h4>Built for Infrastructure</h4>
+      <p>Purpose-built for DOT corridors, utility networks, pavement programs, geotechnical investigations, municipal systems, and subsurface complexity at project scale. Not a repurposed inspection tool or generic GIS.</p>
+    </div>
+    <div class="why-card">
+      <h4>Hardware Agnostic</h4>
+      <p>Works with the sensors you already own and any you add in the future. No new hardware, no vendor lock-in, no disruption to field operations.</p>
+    </div>
+    <div class="why-card">
+      <h4>Not Another GIS Tool</h4>
+      <p>FATHOM ingests raw sensor files, runs DSP and ML against them, reasons across the archive, and generates deliverables. It starts where traditional platforms stop.</p>
+    </div>
+    <div class="why-card">
+      <h4>Your Data, Your Archive</h4>
+      <p>Clients own their data. Every file, record, and AI output belongs to the organization &mdash; hosted on FATHOM Cloud or their own infrastructure.</p>
+    </div>
+    <div class="why-card">
+      <h4>Defense-Grade Rigor</h4>
+      <p>The team behind FATHOM is actively involved in subsurface defense application development. That same rigor in security, sensor fusion, and advanced processing underpins the civilian platform.</p>
+    </div>
+    <div class="why-card">
+      <h4>Compounds With Every Project</h4>
+      <p>The archive grows smarter with every project. Historical data informs current bids. A corridor scanned years ago flags risk on an adjacent job today.</p>
+    </div>
+  </div>
+
+  <div class="callout-quote">
+    <p>"You're already investing in subsurface data.<br>
+    <span>FATHOM is what makes that investment pay off</span> &mdash; on every project,<br>
+    including the ones that are already done."</p>
+  </div>
+
+  <div class="contact-block">
+    <p>For inquiries, please contact:</p>
+    <p style="margin-top: 0.04in;"><strong>Tyler Dotson</strong> &mdash; <span class="role">Founder &amp; CTO, SmartAuger Inc.</span></p>
+    <p>SmartAuger Technologies LLC <span style="color: var(--gray-500); font-size: 7.5pt;">(a SmartAuger Inc. subsidiary)</span> &nbsp;|&nbsp; Akron / Cleveland, Ohio</p>
+  </div>
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- APPENDIX                                                           -->
+<!-- ================================================================ -->
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong> &mdash; Confidential<br>April 14, 2026</div>
+  </div>
+
+  <h2>Appendix <span class="thin">Platform Screenshots</span></h2>
+  <hr class="section-rule">
+
+  <h3>Core Walker &mdash; Cloud Viewer &amp; Project Management</h3>
+  <p style="font-size: 8pt; color: var(--gray-500); margin-bottom: 0.06in;">Project list with spatial overview. Every project in the datalake is browsable, searchable, and viewable on the map &mdash; from any browser, any device.</p>
+  <img src="CORESCREEN.png" alt="Core Walker — Cloud Viewer" style="width: 100%; border: 1px solid var(--gray-200); border-radius: 4px;">
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+    <div>Appendix</div>
+  </div>
+</div>
+
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong> &mdash; Confidential<br>April 14, 2026</div>
+  </div>
+
+  <h3>FATHOM Core &mdash; Intelligence &amp; Sensor Data Viewer</h3>
+  <p style="font-size: 8pt; color: var(--gray-500); margin-bottom: 0.06in;">Unified project workspace showing spatial map overlay, GPR B-scan viewer with AI council detections, layer management, ML results, and sensor data processing tools &mdash; all in a single interface.</p>
+  <img src="FATHOMSCREEN.png" alt="FATHOM Core — Intelligence Platform" style="width: 100%; border: 1px solid var(--gray-200); border-radius: 4px;">
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+    <div>Appendix</div>
+  </div>
+</div>
+
+<div class="page page-break">
+  <div class="page-header">
+    <img src="FinancialsLOGOfathom.png" alt="FATHOM" class="logo-mark">
+    <div class="meta"><strong>FATHOM Platform Overview</strong> &mdash; Confidential<br>April 14, 2026</div>
+  </div>
+
+  <h3>FATHOM Core &mdash; Survey QA &amp; GNSS Analytics</h3>
+  <p style="font-size: 8pt; color: var(--gray-500); margin-bottom: 0.06in;">PPK-filtered GNSS data with automated survey quality analysis &mdash; job duration, distance traveled, average speed, operator coverage heatmap, and collection quality grading. This is what forensic-level survey auditing looks like inside the platform.</p>
+  <img src="Analytics.png" alt="FATHOM Core — Survey QA & GNSS Analytics" style="width: 100%; border: 1px solid var(--gray-200); border-radius: 4px;">
+
+  <div class="page-footer">
+    <div class="conf">SmartAuger Technologies LLC &nbsp;|&nbsp; smartauger.com</div>
+    <div>Appendix</div>
+  </div>
+</div>
+
+</body>
+</html>
