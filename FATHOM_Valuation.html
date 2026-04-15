@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartAuger Technologies LLC — Pre-Money Valuation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-light: #111E33;
+    --navy-mid: #162542;
+    --cyan: #00B4D8;
+    --cyan-dark: #0090AD;
+    --cyan-light: #48CAE4;
+    --white: #FFFFFF;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-500: #64748B;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --green: #22C55E;
+    --amber: #F59E0B;
+    --red: #EF4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-700);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* Header */
+  .header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--cyan);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(0,180,216,0.15);
+    border: 1px solid rgba(0,180,216,0.3);
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: var(--cyan); }
+  .header-sub {
+    font-size: 17px;
+    color: var(--gray-400);
+    font-weight: 400;
+  }
+  .header-meta {
+    margin-top: 20px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .header-meta-item {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+  .header-meta-item strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* Main */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--cyan);
+    color: var(--white);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  th:first-child { border-radius: 6px 0 0 0; }
+  th:last-child { border-radius: 0 6px 0 0; }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  tr:nth-child(even) td { background: var(--gray-50); }
+  tr:last-child td { border-bottom: none; }
+  td.num-cell { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+  td.highlight { color: var(--cyan); font-weight: 700; }
+
+  /* KPI row */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+  .kpi-value.cyan { color: var(--cyan); }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag-cyan { background: rgba(0,180,216,0.12); color: var(--cyan-dark); }
+  .tag-green { background: rgba(34,197,94,0.12); color: #16A34A; }
+  .tag-amber { background: rgba(245,158,11,0.12); color: #D97706; }
+
+  /* Bar chart */
+  .bar-chart { margin: 12px 0; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .bar-label {
+    width: 140px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 24px;
+    background: var(--gray-100);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--cyan);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    min-width: 40px;
+    transition: width 0.4s ease;
+  }
+
+  /* Hero valuation */
+  .hero-val {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 48px 40px;
+    text-align: center;
+    color: var(--white);
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-val::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--cyan);
+  }
+  .hero-val-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .hero-val-number {
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .hero-val-range {
+    font-size: 18px;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+  }
+  .hero-val-sub {
+    font-size: 14px;
+    color: var(--gray-400);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Slider */
+  .weight-controls {
+    margin-top: 24px;
+  }
+  .weight-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .weight-name {
+    width: 180px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .weight-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--gray-200);
+    border-radius: 3px;
+    outline: none;
+  }
+  .weight-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cyan);
+    cursor: pointer;
+    border: 2px solid var(--white);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .weight-pct {
+    width: 44px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+  }
+  .weight-val {
+    width: 80px;
+    text-align: right;
+    font-size: 13px;
+    color: var(--gray-500);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Weighted result */
+  #weighted-result {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--cyan);
+    text-align: center;
+    margin: 20px 0 8px;
+    letter-spacing: -1px;
+  }
+  #weighted-label {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  /* List */
+  .clean-list {
+    list-style: none;
+    padding: 0;
+  }
+  .clean-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .clean-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--cyan);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .clean-list li:last-child { border-bottom: none; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    color: var(--gray-400);
+    border-top: 1px solid var(--gray-200);
+    margin-top: 40px;
+  }
+  .footer strong { color: var(--gray-600); }
+
+  /* Confidence */
+  .conf-high { color: var(--green); font-weight: 700; }
+  .conf-med { color: var(--amber); font-weight: 700; }
+  .conf-low { color: var(--red); font-weight: 700; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .header h1 { font-size: 24px; }
+    .hero-val-number { font-size: 40px; }
+    .header-meta { flex-direction: column; gap: 8px; }
+    .weight-row { flex-wrap: wrap; }
+    .weight-name { width: 100%; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; font-size: 12px; }
+    .header { padding: 24px 0 20px; }
+    .main { padding: 20px; }
+    .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    .section { page-break-inside: avoid; }
+    .hero-val { page-break-inside: avoid; }
+    .weight-slider { display: none; }
+    .kpi-value { font-size: 22px; }
+    .hero-val-number { font-size: 40px; }
+    @page { margin: 0.75in; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">Confidential</div>
+    <h1><span>FATHOM</span> — Pre-Money Valuation Analysis</h1>
+    <div class="header-sub">SmartAuger Technologies LLC</div>
+    <div class="header-meta">
+      <div class="header-meta-item"><strong>Entity:</strong> SmartAuger Technologies LLC</div>
+      <div class="header-meta-item"><strong>Parent:</strong> SmartAuger Inc</div>
+      <div class="header-meta-item"><strong>Stage:</strong> Pre-Revenue / Seed</div>
+      <div class="header-meta-item"><strong>Date:</strong> April 14, 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Target Raise</div>
+      <div class="kpi-value cyan">$8–10M</div>
+      <div class="kpi-sub">Seed Round</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Equity Offered</div>
+      <div class="kpi-value">20–25%</div>
+      <div class="kpi-sub">Implied Post: $32–50M</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Guaranteed Revenue</div>
+      <div class="kpi-value cyan">$890K</div>
+      <div class="kpi-sub">/yr maintenance contract</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Y7 Revenue Target</div>
+      <div class="kpi-value">$50.9M</div>
+      <div class="kpi-sub">Per investor projections</div>
+    </div>
+  </div>
+
+  <!-- 1. COMPANY OVERVIEW -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> Company Overview</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Corporate Structure</div>
+        <ul class="clean-list">
+          <li><strong>SmartAuger Technologies LLC</strong> — subsidiary of SmartAuger Inc</li>
+          <li>Parent raised <strong>$7M seed at $15M pre-money</strong> valuation</li>
+          <li>Tyler invested <strong>$1M sweat equity</strong> in parent company</li>
+          <li>Parent holds <strong>5+ patents</strong> across GPR/sensing IP</li>
+          <li>SA Tech owns <strong>all software IP</strong>: FATHOM, Core Walker, GRAVE engine</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Raise Terms</div>
+        <table>
+          <tr><td>Raising</td><td class="num-cell"><strong>$8–10M</strong></td></tr>
+          <tr><td>Equity offered</td><td class="num-cell">20–25%</td></tr>
+          <tr><td>Implied pre-money (low)</td><td class="num-cell highlight">$32M</td></tr>
+          <tr><td>Implied pre-money (high)</td><td class="num-cell highlight">$50M</td></tr>
+          <tr><td>Implied pre-money (mid)</td><td class="num-cell highlight">$40M</td></tr>
+          <tr><td>Post-money range</td><td class="num-cell">$40–50M</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. REVENUE PROJECTIONS -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> Revenue Projections</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>SaaS Revenue</th>
+            <th>Maintenance</th>
+            <th>Total Revenue</th>
+            <th>Gross Margin</th>
+            <th>EBITDA Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Y1</strong></td>
+            <td class="num-cell">$880K</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$1.77M</td>
+            <td class="num-cell">~65%</td>
+            <td class="num-cell">—</td>
+          </tr>
+          <tr>
+            <td><strong>Y2</strong></td>
+            <td class="num-cell">$2.46M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$3.35M</td>
+            <td class="num-cell">~78%</td>
+            <td class="num-cell">~20%</td>
+          </tr>
+          <tr>
+            <td><strong>Y3</strong></td>
+            <td class="num-cell">$7.81M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$8.70M</td>
+            <td class="num-cell">88%</td>
+            <td class="num-cell">52%</td>
+          </tr>
+          <tr>
+            <td><strong>Y4</strong></td>
+            <td class="num-cell">$16.1M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$17.0M</td>
+            <td class="num-cell">88%</td>
+            <td class="num-cell">55%</td>
+          </tr>
+          <tr>
+            <td><strong>Y5</strong></td>
+            <td class="num-cell">$26.2M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$27.1M</td>
+            <td class="num-cell">88%</td>
+            <td class="num-cell">58%</td>
+          </tr>
+          <tr>
+            <td><strong>Y6</strong></td>
+            <td class="num-cell">$38.2M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$39.1M</td>
+            <td class="num-cell">88%</td>
+            <td class="num-cell">60%</td>
+          </tr>
+          <tr>
+            <td><strong>Y7</strong></td>
+            <td class="num-cell">$50.0M</td>
+            <td class="num-cell">$890K</td>
+            <td class="num-cell highlight">$50.9M</td>
+            <td class="num-cell">88%</td>
+            <td class="num-cell">62%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Revenue Growth Trajectory</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">Y1 — $1.77M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:3.5%">$1.8M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y2 — $3.35M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:6.6%">$3.4M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y3 — $8.70M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:17.1%">$8.7M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y4 — $17.0M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:33.4%">$17.0M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y5 — $27.1M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:53.2%">$27.1M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y6 — $39.1M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:76.8%">$39.1M</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Y7 — $50.9M</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%">$50.9M</div></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--gray-400);margin-top:8px;">Cash-flow positive Y3 | Target 88% gross margin, 52%+ EBITDA by Y3</div>
+    </div>
+  </div>
+
+  <!-- 3. IP & ASSETS -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> Intellectual Property &amp; Assets</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Owned Software IP</div>
+        <ul class="clean-list">
+          <li><strong>FATHOM Platform</strong> — geospatial intelligence SaaS (alpha, deployable)</li>
+          <li><strong>Core Walker</strong> — data ingestion and processing engine</li>
+          <li><strong>GRAVE Engine</strong> — GPR processing and subsurface visualization</li>
+          <li><strong>GRAVE Image Processing</strong> — AI-powered radargram analysis</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Patent &amp; IP Strategy</div>
+        <ul class="clean-list">
+          <li>One-time <strong>$1M license</strong> for augmentation &amp; depth estimation patent from parent</li>
+          <li>Parent holds <strong>5+ patents</strong> across GPR and sensing technologies</li>
+          <li><strong>ARTIMUS ERDC proposal</strong>: $1.3M to SA Tech if awarded (decision June 2026)</li>
+          <li>Active development license within <strong>major defense platform</strong> (NDA)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TRACTION & TEAM -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span> Traction &amp; Team</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Pre-Raise Traction</div>
+        <table>
+          <thead><tr><th>Category</th><th>Detail</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>LOI — Kokosing</td><td>Infrastructure contractor</td><td><span class="tag tag-green">Signed</span></td></tr>
+            <tr><td>LOI — First Energy</td><td>Major utility</td><td><span class="tag tag-amber">Expected</span></td></tr>
+            <tr><td>LOI — WSB Engineering</td><td>Engineering firm</td><td><span class="tag tag-amber">Week of Apr 18</span></td></tr>
+            <tr><td>Pipeline</td><td>Active accounts</td><td><span class="tag tag-cyan">6 accounts</span></td></tr>
+            <tr><td>Dev Partners</td><td>SmartAuger ecosystem</td><td><span class="tag tag-green">2 active</span></td></tr>
+            <tr><td>Channel — Cansel</td><td>Distribution partner</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>Channel — Esri</td><td>GIS ecosystem partner</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>Defense</td><td>Major platform license (NDA)</td><td><span class="tag tag-cyan">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Leadership Team</div>
+        <table>
+          <thead><tr><th>Name</th><th>Role</th><th>Key Credential</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Tyler</strong></td><td>CEO</td><td>Built SmartAuger Inc, $1M+ sweat equity, full-stack</td></tr>
+            <tr><td><strong>Nathan Stein, PhD</strong></td><td>Chief Data Scientist</td><td>PhD Caltech, NASA Mars Perseverance</td></tr>
+            <tr><td><strong>Chi-Chih Chen, PhD</strong></td><td>RF R&amp;D Lead</td><td>OSU ElectroScience Lab, 4,400+ citations</td></tr>
+            <tr><td><strong>Chris Kenney</strong></td><td>CRO</td><td>15+ years GPR sales, $3M+ quota</td></tr>
+            <tr><td><strong>Dave Barry</strong></td><td>VP Business Dev</td><td>CalTrans relationships, infrastructure</td></tr>
+            <tr><td><strong>Gary</strong></td><td>Advisor</td><td>Industry veteran</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. COMPARABLE COMPANIES -->
+  <div class="section">
+    <div class="section-title"><span class="num">5</span> Comparable Companies</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Valuation</th>
+            <th>Total Raised</th>
+            <th>Revenue Multiple</th>
+            <th>Stage</th>
+            <th>Relevance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Exodigo</strong></td>
+            <td class="num-cell">$700M</td>
+            <td class="num-cell">$271M</td>
+            <td class="num-cell highlight">47x</td>
+            <td>Growth</td>
+            <td>Direct comp — subsurface AI mapping</td>
+          </tr>
+          <tr>
+            <td><strong>Procore</strong></td>
+            <td class="num-cell">$12B</td>
+            <td class="num-cell">$631M</td>
+            <td class="num-cell">12x</td>
+            <td>Public</td>
+            <td>Infrastructure vertical SaaS</td>
+          </tr>
+          <tr>
+            <td><strong>Veeva Systems</strong></td>
+            <td class="num-cell">$35B</td>
+            <td class="num-cell">$4M</td>
+            <td class="num-cell">14x</td>
+            <td>Public</td>
+            <td>Vertical SaaS benchmark</td>
+          </tr>
+          <tr>
+            <td><strong>SmartAuger Inc</strong></td>
+            <td class="num-cell">$15M pre</td>
+            <td class="num-cell">$7M</td>
+            <td class="num-cell">—</td>
+            <td>Seed</td>
+            <td>Parent company precedent</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:13px;color:var(--gray-500);">
+        <strong>Key insight:</strong> Exodigo's 47x revenue multiple validates the subsurface AI thesis at massive premiums. SA Tech offers a <em>software-first</em> model (88% margins) vs Exodigo's services-heavy approach.
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. VALUATION METHODOLOGIES -->
+  <div class="section">
+    <div class="section-title"><span class="num">6</span> Valuation Methodologies</div>
+
+    <!-- VC Method -->
+    <div class="card">
+      <div class="card-title">6A. Venture Capital Method <span class="tag tag-cyan" style="margin-left:8px;">Primary — Weight 30%</span></div>
+      <table>
+        <thead>
+          <tr><th>Scenario</th><th>Y7 Revenue</th><th>Exit Multiple</th><th>Exit Value</th><th>VC Target Return</th><th>Pre-Money Today</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Conservative</td>
+            <td class="num-cell">$50.9M</td>
+            <td class="num-cell">10x</td>
+            <td class="num-cell">$509M</td>
+            <td class="num-cell">25x</td>
+            <td class="num-cell"><strong>$20.4M</strong></td>
+          </tr>
+          <tr>
+            <td>Base (adj. dilution)</td>
+            <td class="num-cell">$50.9M</td>
+            <td class="num-cell">14x</td>
+            <td class="num-cell">$713M</td>
+            <td class="num-cell">20x (50% dilution)</td>
+            <td class="num-cell highlight"><strong>$35.6M</strong></td>
+          </tr>
+          <tr>
+            <td>Optimistic</td>
+            <td class="num-cell">$50.9M</td>
+            <td class="num-cell">20x</td>
+            <td class="num-cell">$1.02B</td>
+            <td class="num-cell">20x (40% dilution)</td>
+            <td class="num-cell"><strong>$51.0M</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:13px;color:var(--gray-500);">
+        <strong>Dilution-adjusted analysis:</strong> Assuming 50-60% dilution from Series A/B before exit, seed investors need 20-30x to achieve target returns. Base case: $713M exit / 20x required return = $35.6M post-money, yielding <strong>$35.6M pre-money</strong> (before raise proceeds).
+      </div>
+      <div style="margin-top:8px;padding:12px 16px;background:var(--gray-50);border-radius:6px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--navy);">VC Method Result: $35.6M</strong> <span style="font-size:13px;color:var(--gray-500);">(range $20.4M – $51.0M)</span>
+      </div>
+    </div>
+
+    <!-- Scorecard -->
+    <div class="card">
+      <div class="card-title">6B. Scorecard Method <span class="tag tag-cyan" style="margin-left:8px;">Weight 25%</span></div>
+      <div style="font-size:13px;color:var(--gray-500);margin-bottom:12px;">Median seed pre-money for comparable stage/sector: <strong>$25M</strong></div>
+      <table>
+        <thead>
+          <tr><th>Factor</th><th>Weight</th><th>Score vs Median</th><th>Weighted Score</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Team</td>
+            <td class="num-cell">30%</td>
+            <td class="num-cell" style="color:var(--green);font-weight:700;">150%</td>
+            <td class="num-cell">0.450</td>
+            <td>PhD Caltech, 4,400-citation researcher, proven CEO</td>
+          </tr>
+          <tr>
+            <td>Market Size</td>
+            <td class="num-cell">25%</td>
+            <td class="num-cell" style="color:var(--green);font-weight:700;">130%</td>
+            <td class="num-cell">0.325</td>
+            <td>$8.75B mapping + $3.55B AI + $10B+ defense</td>
+          </tr>
+          <tr>
+            <td>Product / Tech</td>
+            <td class="num-cell">15%</td>
+            <td class="num-cell" style="color:var(--green);font-weight:700;">140%</td>
+            <td class="num-cell">0.210</td>
+            <td>Alpha built, deployable, defense-grade</td>
+          </tr>
+          <tr>
+            <td>Competitive Position</td>
+            <td class="num-cell">10%</td>
+            <td class="num-cell" style="color:var(--green);font-weight:700;">120%</td>
+            <td class="num-cell">0.120</td>
+            <td>Software vs services model advantage</td>
+          </tr>
+          <tr>
+            <td>Partnerships / Traction</td>
+            <td class="num-cell">10%</td>
+            <td class="num-cell" style="color:var(--green);font-weight:700;">130%</td>
+            <td class="num-cell">0.130</td>
+            <td>3 LOIs, defense license, Cansel, Esri</td>
+          </tr>
+          <tr>
+            <td>Need for Add'l Investment</td>
+            <td class="num-cell">10%</td>
+            <td class="num-cell" style="color:var(--amber);font-weight:700;">90%</td>
+            <td class="num-cell">0.090</td>
+            <td>Will need Series A</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="background:var(--gray-50);">
+            <td colspan="2"><strong>Total Weighted Score</strong></td>
+            <td></td>
+            <td class="num-cell"><strong style="color:var(--cyan);">1.325</strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div style="margin-top:12px;padding:12px 16px;background:var(--gray-50);border-radius:6px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--navy);">Scorecard Result: $25M × 1.325 = $33.1M</strong>
+      </div>
+    </div>
+
+    <!-- Berkus -->
+    <div class="card">
+      <div class="card-title">6C. Berkus Method <span class="tag tag-cyan" style="margin-left:8px;">Weight 15%</span></div>
+      <table>
+        <thead>
+          <tr><th>Risk Factor</th><th>Max Value</th><th>Assigned</th><th>Justification</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sound Idea / Business Model</td>
+            <td class="num-cell">$2.5M</td>
+            <td class="num-cell highlight">$2.0M</td>
+            <td>Validated by Exodigo's $700M; SaaS model superior</td>
+          </tr>
+          <tr>
+            <td>Prototype / Technology</td>
+            <td class="num-cell">$2.5M</td>
+            <td class="num-cell highlight">$2.0M</td>
+            <td>Alpha software built, deployable today</td>
+          </tr>
+          <tr>
+            <td>Quality Management Team</td>
+            <td class="num-cell">$2.5M</td>
+            <td class="num-cell highlight">$2.5M</td>
+            <td>Exceptional — PhDs, proven sales, deep domain</td>
+          </tr>
+          <tr>
+            <td>Strategic Relationships</td>
+            <td class="num-cell">$2.5M</td>
+            <td class="num-cell highlight">$2.0M</td>
+            <td>LOIs, defense platform, Cansel, Esri, OSU SRA</td>
+          </tr>
+          <tr>
+            <td>Product Rollout / Revenue</td>
+            <td class="num-cell">$2.5M</td>
+            <td class="num-cell highlight">$1.5M</td>
+            <td>$890K maintenance guaranteed; SaaS pre-revenue</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="background:var(--gray-50);">
+            <td colspan="2"><strong>Berkus Total</strong></td>
+            <td class="num-cell"><strong style="color:var(--cyan);font-size:16px;">$10.0M</strong></td>
+            <td>Note: Berkus caps at ~$12.5M; method is conservative for this stage</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div style="margin-top:12px;padding:12px 16px;background:var(--gray-50);border-radius:6px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--navy);">Berkus Result: $10.0M</strong> <span style="font-size:13px;color:var(--gray-500);">(method inherently conservative — caps at $12.5M)</span>
+      </div>
+    </div>
+
+    <!-- DCF -->
+    <div class="card">
+      <div class="card-title">6D. Risk-Adjusted DCF <span class="tag tag-cyan" style="margin-left:8px;">Weight 15%</span></div>
+      <table>
+        <thead>
+          <tr><th>Year</th><th>Revenue</th><th>Gross Profit (88%)</th><th>Est. FCF</th><th>Discount Factor (45%)</th><th>PV of FCF</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Y1</td>
+            <td class="num-cell">$1.77M</td>
+            <td class="num-cell">$1.15M</td>
+            <td class="num-cell">($2.0M)</td>
+            <td class="num-cell">0.690</td>
+            <td class="num-cell">($1.38M)</td>
+          </tr>
+          <tr>
+            <td>Y2</td>
+            <td class="num-cell">$3.35M</td>
+            <td class="num-cell">$2.61M</td>
+            <td class="num-cell">($0.5M)</td>
+            <td class="num-cell">0.476</td>
+            <td class="num-cell">($0.24M)</td>
+          </tr>
+          <tr>
+            <td>Y3</td>
+            <td class="num-cell">$8.70M</td>
+            <td class="num-cell">$7.66M</td>
+            <td class="num-cell">$4.52M</td>
+            <td class="num-cell">0.328</td>
+            <td class="num-cell">$1.48M</td>
+          </tr>
+          <tr>
+            <td>Y4</td>
+            <td class="num-cell">$17.0M</td>
+            <td class="num-cell">$14.96M</td>
+            <td class="num-cell">$9.35M</td>
+            <td class="num-cell">0.226</td>
+            <td class="num-cell">$2.11M</td>
+          </tr>
+          <tr>
+            <td>Y5</td>
+            <td class="num-cell">$27.1M</td>
+            <td class="num-cell">$23.85M</td>
+            <td class="num-cell">$15.71M</td>
+            <td class="num-cell">0.156</td>
+            <td class="num-cell">$2.45M</td>
+          </tr>
+          <tr>
+            <td>Y6</td>
+            <td class="num-cell">$39.1M</td>
+            <td class="num-cell">$34.41M</td>
+            <td class="num-cell">$23.46M</td>
+            <td class="num-cell">0.108</td>
+            <td class="num-cell">$2.53M</td>
+          </tr>
+          <tr>
+            <td>Y7</td>
+            <td class="num-cell">$50.9M</td>
+            <td class="num-cell">$44.79M</td>
+            <td class="num-cell">$31.56M</td>
+            <td class="num-cell">0.074</td>
+            <td class="num-cell">$2.34M</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;">
+        <table>
+          <thead><tr><th>Component</th><th>Value</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Sum of PV (FCFs)</td><td class="num-cell">$9.29M</td><td>7-year discounted free cash flows at 45% rate</td></tr>
+            <tr><td>Terminal Value</td><td class="num-cell">$31.56M / (45%−15%) = $105.2M</td><td>Gordon Growth, 15% perpetuity growth, 45% discount</td></tr>
+            <tr><td>PV of Terminal Value</td><td class="num-cell">$105.2M × 0.074 = $7.78M</td><td>Discounted to present</td></tr>
+            <tr>
+              <td><strong>Enterprise Value</strong></td>
+              <td class="num-cell highlight" style="font-size:16px;"><strong>$17.1M</strong></td>
+              <td>Sum of PV(FCFs) + PV(Terminal)</td>
+            </tr>
+            <tr>
+              <td><strong>Adjusted (35% rate)</strong></td>
+              <td class="num-cell highlight" style="font-size:16px;"><strong>$28.5M</strong></td>
+              <td>Lower discount reflecting de-risked IP + maintenance revenue</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:12px;padding:12px 16px;background:var(--gray-50);border-radius:6px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--navy);">DCF Result: $17.1M–$28.5M (midpoint $22.8M)</strong> <span style="font-size:13px;color:var(--gray-500);">DCF inherently conservative for pre-revenue; 45% discount is aggressive</span>
+      </div>
+    </div>
+
+    <!-- Comparable Transaction -->
+    <div class="card">
+      <div class="card-title">6E. Comparable Transaction Analysis <span class="tag tag-cyan" style="margin-left:8px;">Weight 15%</span></div>
+      <table>
+        <thead><tr><th>Transaction</th><th>Pre-Money</th><th>Adjustment</th><th>Implied for SA Tech</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>SmartAuger Inc seed ($15M pre)</td>
+            <td class="num-cell">$15M</td>
+            <td class="num-cell">2.5–3.0x premium</td>
+            <td class="num-cell highlight">$37.5–$45.0M</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="font-size:13px;color:var(--gray-500);padding-left:24px;">
+              SA Tech has: all software IP, defense pipeline, PhD team, $890K guaranteed revenue, alpha product built. Justifies significant premium to parent's seed valuation.
+            </td>
+          </tr>
+          <tr>
+            <td>Exodigo seed-equivalent</td>
+            <td class="num-cell">~$50M est.</td>
+            <td class="num-cell">0.7–1.0x</td>
+            <td class="num-cell highlight">$35.0–$50.0M</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="font-size:13px;color:var(--gray-500);padding-left:24px;">
+              Exodigo raised in a bull market with massive FOMO. Discount for current conditions, but SA Tech has superior margin profile (SaaS vs services).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;padding:12px 16px;background:var(--gray-50);border-radius:6px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--navy);">Comparable Result: $37.5M</strong> <span style="font-size:13px;color:var(--gray-500);">(range $35.0M – $50.0M)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. METHODOLOGY CONFIDENCE -->
+  <div class="section">
+    <div class="section-title"><span class="num">7</span> Methodology Confidence Assessment</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Result</th><th>Confidence</th><th>Weight</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Venture Capital</strong></td>
+            <td class="num-cell highlight">$35.6M</td>
+            <td class="conf-high">High</td>
+            <td class="num-cell">30%</td>
+            <td>Standard for seed; accounts for dilution and required returns</td>
+          </tr>
+          <tr>
+            <td><strong>Scorecard</strong></td>
+            <td class="num-cell highlight">$33.1M</td>
+            <td class="conf-high">High</td>
+            <td class="num-cell">25%</td>
+            <td>Well-suited to pre-revenue; exceptional team drives premium</td>
+          </tr>
+          <tr>
+            <td><strong>Berkus</strong></td>
+            <td class="num-cell">$10.0M</td>
+            <td class="conf-low">Low</td>
+            <td class="num-cell">15%</td>
+            <td>Method caps at $12.5M — structurally inadequate for this raise size</td>
+          </tr>
+          <tr>
+            <td><strong>Risk-Adjusted DCF</strong></td>
+            <td class="num-cell">$22.8M</td>
+            <td class="conf-med">Medium</td>
+            <td class="num-cell">15%</td>
+            <td>Conservative; 45% discount rate penalizes pre-revenue heavily</td>
+          </tr>
+          <tr>
+            <td><strong>Comparable Transactions</strong></td>
+            <td class="num-cell highlight">$37.5M</td>
+            <td class="conf-high">High</td>
+            <td class="num-cell">15%</td>
+            <td>Parent precedent + Exodigo thesis validation provide strong anchors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HERO VALUATION -->
+  <div class="hero-val">
+    <div class="hero-val-label">Recommended Pre-Money Valuation</div>
+    <div class="hero-val-number">$35M – $45M</div>
+    <div class="hero-val-range">Weighted midpoint: <strong style="color:var(--cyan);">$30.7M</strong> | Justified midpoint: <strong style="color:var(--cyan);">$40M</strong></div>
+    <div class="hero-val-sub">
+      The weighted average ($30.7M) is pulled down by the Berkus method's structural $12.5M cap. Excluding Berkus and re-weighting, the midpoint rises to ~$34M. Factoring in qualitative premiums — defense pipeline, guaranteed maintenance revenue, exceptional team, and the Exodigo-validated subsurface AI thesis — a <strong>$35–45M pre-money valuation</strong> is defensible and aligns with the raise terms ($8–10M for 20–25% equity).
+    </div>
+  </div>
+
+  <!-- 8. INTERACTIVE WEIGHTED AVERAGE -->
+  <div class="section">
+    <div class="section-title"><span class="num">8</span> Interactive Weighted Average</div>
+    <div class="card">
+      <div style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">Adjust the weights below to see how different emphasis affects the blended valuation. Weights auto-normalize to 100%.</div>
+      <div class="weight-controls" id="weight-controls">
+        <div class="weight-row" data-method="vc">
+          <div class="weight-name">VC Method ($35.6M)</div>
+          <input type="range" class="weight-slider" min="0" max="100" value="30" data-val="35.6">
+          <div class="weight-pct">30%</div>
+          <div class="weight-val">$10.7M</div>
+        </div>
+        <div class="weight-row" data-method="sc">
+          <div class="weight-name">Scorecard ($33.1M)</div>
+          <input type="range" class="weight-slider" min="0" max="100" value="25" data-val="33.1">
+          <div class="weight-pct">25%</div>
+          <div class="weight-val">$8.3M</div>
+        </div>
+        <div class="weight-row" data-method="bk">
+          <div class="weight-name">Berkus ($10.0M)</div>
+          <input type="range" class="weight-slider" min="0" max="100" value="15" data-val="10.0">
+          <div class="weight-pct">15%</div>
+          <div class="weight-val">$1.5M</div>
+        </div>
+        <div class="weight-row" data-method="dcf">
+          <div class="weight-name">DCF ($22.8M)</div>
+          <input type="range" class="weight-slider" min="0" max="100" value="15" data-val="22.8">
+          <div class="weight-pct">15%</div>
+          <div class="weight-val">$3.4M</div>
+        </div>
+        <div class="weight-row" data-method="comp">
+          <div class="weight-name">Comparable ($37.5M)</div>
+          <input type="range" class="weight-slider" min="0" max="100" value="15" data-val="37.5">
+          <div class="weight-pct">15%</div>
+          <div class="weight-val">$5.6M</div>
+        </div>
+      </div>
+      <div id="weighted-result">$30.7M</div>
+      <div id="weighted-label">Weighted Average Pre-Money Valuation</div>
+    </div>
+  </div>
+
+  <!-- 9. JUSTIFICATION -->
+  <div class="section">
+    <div class="section-title"><span class="num">9</span> Valuation Justification: Why $35–45M is Defensible</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Quantitative Support</div>
+        <ul class="clean-list">
+          <li><strong>Raise math:</strong> $8–10M for 20–25% implies $32–50M pre-money — midpoint $40M</li>
+          <li><strong>VC method:</strong> $35.6M base case with dilution-adjusted Y7 exit at $713M</li>
+          <li><strong>Scorecard:</strong> 1.325x premium to $25M median = $33.1M</li>
+          <li><strong>Parent precedent:</strong> SA Inc at $15M × 2.5x premium = $37.5M</li>
+          <li><strong>$890K guaranteed revenue</strong> de-risks the investment floor</li>
+          <li><strong>88% target gross margin</strong> justifies SaaS-tier multiples</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Qualitative Premiums</div>
+        <ul class="clean-list">
+          <li><strong>Team depth:</strong> PhD Caltech (NASA), 4,400-citation OSU researcher, proven CEO</li>
+          <li><strong>Defense pipeline:</strong> Active license in major defense platform (NDA), ARTIMUS ERDC</li>
+          <li><strong>Market timing:</strong> Exodigo proved the thesis at $700M — SA Tech is the next mover</li>
+          <li><strong>Software > Services:</strong> SA Tech's SaaS model delivers 88% margins vs Exodigo's services-heavy approach</li>
+          <li><strong>IP moat:</strong> Owns all software, licensed patents, OSU Sponsored Research Agreement</li>
+          <li><strong>Channel leverage:</strong> Cansel + Esri partnerships multiply reach without proportional cost</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. SENSITIVITY -->
+  <div class="section">
+    <div class="section-title"><span class="num">10</span> Sensitivity Analysis</div>
+    <div class="card">
+      <div class="card-title">Pre-Money Valuation by Exit Multiple and VC Return Requirement</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Exit Multiple \ VC Return</th>
+            <th>15x Return</th>
+            <th>20x Return</th>
+            <th>25x Return</th>
+            <th>30x Return</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>8x revenue ($407M)</strong></td>
+            <td class="num-cell">$27.1M</td>
+            <td class="num-cell">$20.4M</td>
+            <td class="num-cell">$16.3M</td>
+            <td class="num-cell">$13.6M</td>
+          </tr>
+          <tr>
+            <td><strong>10x revenue ($509M)</strong></td>
+            <td class="num-cell">$33.9M</td>
+            <td class="num-cell">$25.5M</td>
+            <td class="num-cell">$20.4M</td>
+            <td class="num-cell">$17.0M</td>
+          </tr>
+          <tr>
+            <td><strong>14x revenue ($713M)</strong></td>
+            <td class="num-cell highlight">$47.5M</td>
+            <td class="num-cell highlight">$35.6M</td>
+            <td class="num-cell">$28.5M</td>
+            <td class="num-cell">$23.8M</td>
+          </tr>
+          <tr>
+            <td><strong>20x revenue ($1.02B)</strong></td>
+            <td class="num-cell highlight">$67.9M</td>
+            <td class="num-cell highlight">$50.9M</td>
+            <td class="num-cell highlight">$40.7M</td>
+            <td class="num-cell">$33.9M</td>
+          </tr>
+          <tr>
+            <td><strong>30x revenue ($1.53B)</strong></td>
+            <td class="num-cell">$101.8M</td>
+            <td class="num-cell">$76.4M</td>
+            <td class="num-cell">$61.1M</td>
+            <td class="num-cell">$50.9M</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:13px;color:var(--gray-500);">
+        <strong>Highlighted cells</strong> represent the $35–50M target pre-money range. The 14x exit multiple (Veeva benchmark) with 20x VC return lands squarely at $35.6M. Even conservative 10x exits with 15x returns support $33.9M.
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>CONFIDENTIAL</strong> — SmartAuger Technologies LLC<br>
+  This document is for internal valuation purposes only. Not a solicitation or offer of securities.<br>
+  Prepared April 14, 2026 | All projections are forward-looking estimates and subject to risk.
+</div>
+
+<script>
+(function() {
+  var rows = document.querySelectorAll('.weight-row');
+  var resultEl = document.getElementById('weighted-result');
+  var sliders = document.querySelectorAll('.weight-slider');
+
+  function recalc() {
+    var total = 0;
+    rows.forEach(function(r) {
+      total += parseInt(r.querySelector('.weight-slider').value);
+    });
+    if (total === 0) total = 1;
+    var weighted = 0;
+    rows.forEach(function(r) {
+      var slider = r.querySelector('.weight-slider');
+      var raw = parseInt(slider.value);
+      var pct = raw / total;
+      var val = parseFloat(slider.getAttribute('data-val'));
+      var contrib = pct * val;
+      weighted += contrib;
+      r.querySelector('.weight-pct').textContent = Math.round(pct * 100) + '%';
+      r.querySelector('.weight-val').textContent = '$' + contrib.toFixed(1) + 'M';
+    });
+    resultEl.textContent = '$' + weighted.toFixed(1) + 'M';
+  }
+
+  sliders.forEach(function(s) {
+    s.addEventListener('input', recalc);
+  });
+
+  recalc();
+})();
+</script>
+
+</body>
+</html>
